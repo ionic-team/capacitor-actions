@@ -1,2 +1,2 @@
 # capacitor-actions
-Actions we use to release Capacitor and it's Plugins
+Actions we use to release Capacitor and its Plugins
