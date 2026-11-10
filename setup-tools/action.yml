@@ -2,10 +2,14 @@ name: 'Setup Tools'
 description: 'Setup tools needed in repo'
 inputs:
   working-directory: 
-    description: 'package working directory'
+    description: 'Package working directory'
     required: true
   gh-token:
     required: true
+  xcode-version:
+    description: "Xcode version to build with"
+    required: false
+    default: 27.0
 
 runs:
   using: 'composite'
@@ -22,7 +26,7 @@ runs:
       working-directory: ${{ inputs.working-directory }}
       shell: bash
       run: npm i
-    - name: Set Xcode 26.0  # minimum support Xcode version by Capacitor 8
+    - name: Set Xcode ${{ inputs.xcode-version }}  # minimum support Xcode version by Capacitor 8
       if: runner.os == 'macOS'
       shell: bash
-      run: sudo xcode-select --switch /Applications/Xcode_26.0.app
+      run: sudo xcode-select --switch /Applications/Xcode_${{ inputs.xcode-version }}.app
