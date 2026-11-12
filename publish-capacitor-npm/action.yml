@@ -1,0 +1,40 @@
+name: 'Publish Capacitor'
+description: 'Publish Capacitor to NPM'
+inputs:
+  working-directory:
+    description: 'Package working directory'
+    required: true
+  gh-token:
+    description: 'Github Token'
+    required: true
+  npm-job:
+    description: 'NPM job to run'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.CAP_GH_RELEASE_TOKEN }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org/
+          cache: npm
+          cache-dependency-path: '**/package.json'
+      - name: Install Packages
+        shell: bash
+        run: |
+          npm install
+      - name: Version & Publish
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.CAP_GH_RELEASE_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          git config user.name "Github Workflow (on behalf of ${{ github.actor }})"
+          git config user.email "users.noreply.github.com"
+          npm whoami
+          npm run ${{ inputs.npm-job }}

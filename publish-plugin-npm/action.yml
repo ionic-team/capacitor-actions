@@ -1,17 +1,19 @@
 name: 'Publish Plugin'
 description: 'Publish Plugin to NPM'
 inputs:
-  working-directory: 
+  working-directory:
     description: 'Package working directory'
     required: true
   gh-token:
+    description: 'Github Token'
     required: true
   npm-tag:
+    description: 'NPM Tag to release under'
     required: true
   xcode-version:
-    description: "Xcode version to build with"
+    description: 'Xcode version to build with'
     required: false
-    default: 27.0
+    default: '27.0'
 
 runs:
   using: 'composite'

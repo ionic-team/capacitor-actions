@@ -1,10 +1,11 @@
 name: 'Lint Plugin'
 description: 'Run lint requirements against Plugin'
 inputs:
-  working-directory: 
-    description: 'package working directory'
+  working-directory:
+    description: 'Package working directory'
     required: true
   gh-token:
+    description: 'Github Token'
     required: true
 
 runs:

@@ -1,10 +1,11 @@
 name: 'Build Capacitor Plugin'
 description: 'Build Plugin for Capacitor'
 inputs:
-  working-directory: 
-    description: 'package working directory'
+  working-directory:
+    description: 'Package working directory'
     required: true
   gh-token:
+    description: 'Github Token'
     required: true
 
 runs:

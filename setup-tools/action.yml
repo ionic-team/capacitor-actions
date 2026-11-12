@@ -1,15 +1,16 @@
 name: 'Setup Tools'
 description: 'Setup tools needed in repo'
 inputs:
-  working-directory: 
+  working-directory:
     description: 'Package working directory'
     required: true
   gh-token:
+    description: 'Github Token'
     required: true
   xcode-version:
     description: "Xcode version to build with"
     required: false
-    default: 27.0
+    default: '27.0'
 
 runs:
   using: 'composite'
